@@ -32,9 +32,17 @@ public class HistoriqueService {
     }
 
    
-    public Historique updateHistorique(Historique historique){
-        return historiqueRepository.save(historique);
+    public Historique updateHistorique(Long id, Historique newHistorique){
+
+    Historique h = historiqueRepository.findById(id).orElse(null);
+
+    if(h != null){
+        h.setDescription(newHistorique.getDescription());
+        return historiqueRepository.save(h);
     }
+
+    return null;
+}
 
     
     public void deleteHistorique(Long id){

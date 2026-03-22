@@ -15,30 +15,36 @@ public class DepartementService {
     @Autowired
     private DepartementRepository departementRepository;
 
-    // Ajouter departement
+    
     public Departement ajouterDepartement(Departement departement){
         return departementRepository.save(departement);
     }
 
-    // Afficher tous les departements
+    
     public List<Departement> getAllDepartements(){
         return departementRepository.findAll();
     }
 
-    // Chercher departement par ID
+    
     public Departement getDepartementById(String id){
         Optional<Departement> departement = departementRepository.findById(id);
         return departement.orElse(null);
     }
 
-    // Modifier departement
-    public Departement updateDepartement(Departement departement){
-        return departementRepository.save(departement);
+    
+    public Departement updateDepartement(String id, Departement newDep){
+
+    Departement d = departementRepository.findById(id).orElse(null);
+
+    if(d != null){
+        d.setNomDep(newDep.getNomDep());
+        return departementRepository.save(d);
     }
 
-    // Supprimer departement
-    public void deleteDepartement(String id){
-        departementRepository.deleteById(id);
-    }
+    return null;
+}
+
+    
+    
 
 }

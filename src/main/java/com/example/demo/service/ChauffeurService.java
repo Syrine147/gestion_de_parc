@@ -15,7 +15,7 @@ public class ChauffeurService {
     @Autowired
     private ChauffeurRepository chauffeurRepository;
 
-    // Ajouter chauffeur
+
     public Chauffeur ajouterChauffeur(Chauffeur chauffeur){
         return chauffeurRepository.save(chauffeur);
     }
@@ -25,18 +25,30 @@ public class ChauffeurService {
         return chauffeurRepository.findAll();
     }
 
-    // Chercher chauffeur par ID
+    
     public Chauffeur getChauffeurById(String id){
         Optional<Chauffeur> chauffeur = chauffeurRepository.findById(id);
         return chauffeur.orElse(null);
     }
 
-    // Modifier chauffeur
-    public Chauffeur updateChauffeur(Chauffeur chauffeur){
-        return chauffeurRepository.save(chauffeur);
+    
+    public Chauffeur updateChauffeur(String id, Chauffeur newChauffeur){
+
+    Chauffeur c = chauffeurRepository.findById(id).orElse(null);
+
+    if(c != null){
+
+        c.setPermis(newChauffeur.getPermis());
+        c.setEtat(newChauffeur.getEtat());
+       
+
+        return chauffeurRepository.save(c);
     }
 
-    // Supprimer chauffeur
+    return null;
+}
+
+    
     public void deleteChauffeur(String id){
         chauffeurRepository.deleteById(id);
     }

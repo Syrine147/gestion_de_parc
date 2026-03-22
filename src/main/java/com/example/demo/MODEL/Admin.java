@@ -8,7 +8,4 @@ import java.util.List;
 
 public class Admin extends Personne {
 
-    @OneToMany(mappedBy = "admin")
-    private List<Compte> comptes;
-
 }

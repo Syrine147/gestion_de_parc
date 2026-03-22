@@ -14,28 +14,42 @@ public class PersonneService {
     @Autowired
     private PersonneRepository personneRepository;
 
-    // ajouter personne
+    
     public Personne ajouterPersonne(Personne personne){
         return personneRepository.save(personne);
     }
 
-    // afficher toutes les personnes
+    
     public List<Personne> getAllPersonnes(){
         return personneRepository.findAll();
     }
 
-    // chercher personne par id
+    
     public Personne getPersonneById(String id){
         Optional<Personne> personne = personneRepository.findById(id);
         return personne.orElse(null);
     }
 
-    // modifier personne
-    public Personne updatePersonne(Personne personne){
-        return personneRepository.save(personne);
+    public Personne updatePersonne(String id, Personne newPersonne){
+
+    Personne p = personneRepository.findById(id).orElse(null);
+
+    if(p != null){
+        p.setIdUser(newPersonne.getIdUser());
+        p.setNom(newPersonne.getNom());
+        p.setPrenom(newPersonne.getPrenom());
+        p.setEmail(newPersonne.getEmail());
+        p.setTel(newPersonne.getTel());
+        p.setRole(newPersonne.getRole());
+        p.setPassword(newPersonne.getPassword());
+
+        return personneRepository.save(p);
     }
 
-    // supprimer personne
+    return null;
+}
+
+   
     public void deletePersonne(String id){
         personneRepository.deleteById(id);
     }

@@ -14,28 +14,43 @@ public class VehiculeService {
     @Autowired
     private VehiculeRepository vehiculeRepository;
 
-    // ajouter vehicule
+    
     public Vehicule ajouterVehicule(Vehicule vehicule){
         return vehiculeRepository.save(vehicule);
     }
 
-    // afficher tous les vehicules
+   
     public List<Vehicule> getAllVehicules(){
         return vehiculeRepository.findAll();
     }
 
-    // chercher vehicule par matricule
+   
     public Vehicule getVehiculeById(String matricule){
         Optional<Vehicule> vehicule = vehiculeRepository.findById(matricule);
         return vehicule.orElse(null);
     }
 
-    // modifier vehicule
-    public Vehicule updateVehicule(Vehicule vehicule){
-        return vehiculeRepository.save(vehicule);
+   
+    public Vehicule updateEntity(String id, Vehicule newVehicule){
+
+    Vehicule v = vehiculeRepository.findById(id).orElse(null);
+
+    if(vehiculeRepository != null){
+
+        
+        v.setIdVeh(newVehicule.getIdVeh());
+        v.setMarque(newVehicule.getMarque());
+        v.setModele(newVehicule.getModele());
+        v.setType(newVehicule.getType());
+        v.setEtat(newVehicule.getEtat());
+
+        return vehiculeRepository.save(v);
     }
 
-    // supprimer vehicule
+    return null;
+}
+
+    
     public void deleteVehicule(String matricule){
         vehiculeRepository.deleteById(matricule);
     }

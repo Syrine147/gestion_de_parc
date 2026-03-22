@@ -14,26 +14,41 @@ public class ReservationService {
     @Autowired
     private ReservationRepository reservationRepository;
 
-    // ajouter reservation
+    
     public Reservation ajouterReservation(Reservation reservation){
         return reservationRepository.save(reservation);
     }
 
-    // afficher toutes les reservations
+   
     public List<Reservation> getAllReservations(){
         return reservationRepository.findAll();
     }
 
-    // chercher reservation par id
+    
     public Reservation getReservationById(String id){
         Optional<Reservation> reservation = reservationRepository.findById(id);
         return reservation.orElse(null);
     }
 
     
-    public Reservation updateReservation(Reservation reservation){
-        return reservationRepository.save(reservation);
+    public Reservation updateReservation(String id, Reservation newReservation){
+
+    Reservation r = reservationRepository.findById(id).orElse(null);
+
+    if( r!= null){
+
+        r.setId(newReservation.getId());
+        r.setDateArrive(newReservation.getDateArrive());
+        r.setDateDepart(newReservation.getDateDepart());
+        r.setLieuArrive(newReservation.getLieuArrive());
+        r.setLieuDepart(newReservation.getLieuDepart());
+
+
+        return reservationRepository.save(r);
     }
+
+    return null;
+}
 
     
     public void deleteReservation(String id){
