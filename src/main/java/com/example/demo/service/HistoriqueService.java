@@ -37,6 +37,7 @@ public class HistoriqueService {
     Historique h = historiqueRepository.findById(id).orElse(null);
 
     if(h != null){
+        h.setId(newHistorique.getId());
         h.setDescription(newHistorique.getDescription());
         return historiqueRepository.save(h);
     }

@@ -37,6 +37,7 @@ public class DepartementService {
     Departement d = departementRepository.findById(id).orElse(null);
 
     if(d != null){
+        d.setIdDep(newDep.getIdDep());
         d.setNomDep(newDep.getNomDep());
         return departementRepository.save(d);
     }
