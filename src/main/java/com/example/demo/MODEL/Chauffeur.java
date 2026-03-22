@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
-import java.util.List;
+
 
 @Entity
 @Getter
@@ -20,10 +20,7 @@ public class Chauffeur extends Personne {
     @Column(nullable = false)
     private String etat;
 
-    @Column(nullable = false)
-    private int kilometrage;
 
-    @OneToMany(mappedBy = "chauffeur")
-    private List<Vehicule> vehicules;
+  
 
 }
