@@ -15,7 +15,7 @@ public class PersonneService {
     private PersonneRepository personneRepository;
 
     
-    public Personne ajouterPersonne(Personne personne){
+    public Personne createPersonne(Personne personne){
         return personneRepository.save(personne);
     }
 

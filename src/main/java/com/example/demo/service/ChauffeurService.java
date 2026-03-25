@@ -16,11 +16,10 @@ public class ChauffeurService {
     private ChauffeurRepository chauffeurRepository;
 
 
-    public Chauffeur ajouterChauffeur(Chauffeur chauffeur){
+    public Chauffeur createChauffeur(Chauffeur chauffeur){
         return chauffeurRepository.save(chauffeur);
     }
 
-    // Afficher tous les chauffeurs
     public List<Chauffeur> getAllChauffeurs(){
         return chauffeurRepository.findAll();
     }

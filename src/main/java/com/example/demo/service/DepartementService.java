@@ -16,7 +16,7 @@ public class DepartementService {
     private DepartementRepository departementRepository;
 
     
-    public Departement ajouterDepartement(Departement departement){
+    public Departement createDepartement(Departement departement){
         return departementRepository.save(departement);
     }
 

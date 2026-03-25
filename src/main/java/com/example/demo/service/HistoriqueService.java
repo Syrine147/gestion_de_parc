@@ -16,7 +16,7 @@ public class HistoriqueService {
     private HistoriqueRepository historiqueRepository;
 
    
-    public Historique ajouterHistorique(Historique historique){
+    public Historique createHistorique(Historique historique){
         return historiqueRepository.save(historique);
     }
 
