@@ -24,10 +24,16 @@
 
  <dependencies>
 
-  <!-- Spring Boot base -->
+  <!-- Spring Boot Base -->
   <dependency>
    <groupId>org.springframework.boot</groupId>
    <artifactId>spring-boot-starter</artifactId>
+  </dependency>
+
+  <!-- 🌐 SPRING WEB (ناقص وكان سبب المشاكل) -->
+  <dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-web</artifactId>
   </dependency>
 
   <!-- JPA -->
@@ -67,7 +73,6 @@
     <artifactId>spring-boot-maven-plugin</artifactId>
    </plugin>
 
-   <!-- Lombok processor -->
    <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-compiler-plugin</artifactId>

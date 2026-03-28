@@ -35,7 +35,7 @@ public class VehiculeService {
 
     Vehicule v = vehiculeRepository.findById(id).orElse(null);
 
-    if(vehiculeRepository != null){
+    if(v!= null){
 
         
         v.setIdVeh(newVehicule.getIdVeh());
