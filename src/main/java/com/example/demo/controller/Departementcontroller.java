@@ -24,7 +24,7 @@ public class DepartementController {
 
    
     @GetMapping("/{id}")
-    public Departement getById(@PathVariable String id) {
+    public Departement getById(@PathVariable Long id) {
         return departementService.getDepartementById(id);
     }
 
@@ -36,7 +36,7 @@ public class DepartementController {
 
     
     @PutMapping("/{id}")
-    public Departement update(@PathVariable String id, @RequestBody Departement updated) {
+    public Departement update(@PathVariable Long id, @RequestBody Departement updated) {
         return departementService.updateDepartement(id, updated);
     }
 

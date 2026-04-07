@@ -24,24 +24,24 @@ public class ReservationController {
 
    
     @GetMapping("/{id}")
-    public Reservation getById(@PathVariable String id) {
+    public Reservation getById(@PathVariable long id) {
         return reservationService.getReservationById(id);
     }
 
     
     @PostMapping
     public Reservation create(@RequestBody Reservation reservation) {
-        return reservationService.ajouterReservation(reservation);
+        return reservationService.createReservation(reservation);
     }
 
     
     @PutMapping("/{id}")
-    public Reservation update(@PathVariable String id, @RequestBody Reservation updated) {
+    public Reservation update(@PathVariable long id, @RequestBody Reservation updated) {
         return reservationService.updateReservation(id, updated);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id) {
+    public void delete(@PathVariable Long id) {
         reservationService.deleteReservation(id);
     }
 }

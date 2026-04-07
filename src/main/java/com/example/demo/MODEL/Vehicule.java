@@ -15,8 +15,8 @@ import java.util.List;
 public class Vehicule {
 
     @Id
-    @Column(nullable = false, unique = true)
-    private String idVeh;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+     private Long idVeh;
 
     @Column(nullable = false)
     private String modele;

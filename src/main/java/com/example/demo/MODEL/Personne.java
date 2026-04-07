@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "personnes")
-
 public class Personne {
 
     @Id
-    @Column(name = "id_user")
-    private String idUser;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_user", updatable = false, nullable = false)
+    private Long idUser;
 
     @Column(nullable = false)
     private String nom;

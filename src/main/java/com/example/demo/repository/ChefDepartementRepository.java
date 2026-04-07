@@ -3,6 +3,6 @@ package com.example.demo.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.MODEL.ChefDepartement;
 
-public interface ChefDepartementRepository extends JpaRepository<ChefDepartement, String> {
+public interface ChefDepartementRepository extends JpaRepository<ChefDepartement, Long> {
 
 }

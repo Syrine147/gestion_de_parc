@@ -24,25 +24,25 @@ public class Vehiculecontroller {
 
     
     @GetMapping("/{matricule}")
-    public Vehicule getById(@PathVariable String matricule) {
+    public Vehicule getById(@PathVariable long matricule) {
         return vehiculeService.getVehiculeById(matricule);
     }
 
    
     @PostMapping
     public Vehicule create(@RequestBody Vehicule vehicule) {
-        return vehiculeService.ajouterVehicule(vehicule);
+        return vehiculeService.createVehicule(vehicule);
     }
 
     
     @PutMapping("/{id}")
-    public Vehicule update(@PathVariable String id, @RequestBody Vehicule updated) {
-        return vehiculeService.updateEntity(id, updated);
+    public Vehicule update(@PathVariable long id, @RequestBody Vehicule updated) {
+        return vehiculeService.updateVehicule(id, updated);
     }
 
     
     @DeleteMapping("/{matricule}")
-    public void delete(@PathVariable String matricule) {
+    public void delete(@PathVariable Long matricule) {
         vehiculeService.deleteVehicule(matricule);
     }
 }

@@ -23,7 +23,7 @@ public class PersonneController {
 
     
     @GetMapping("/{id}")
-    public Personne getById(@PathVariable String id){
+    public Personne getById(@PathVariable Long id){
         return personneService.getPersonneById(id);
     }
 
@@ -35,12 +35,12 @@ public class PersonneController {
 
     
     @PutMapping("/{id}")
-    public Personne update(@PathVariable String id, @RequestBody Personne updated){
+    public Personne update(@PathVariable Long id, @RequestBody Personne updated){
         return personneService.updatePersonne(id, updated);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id){
+    public void delete(@PathVariable Long id){
         personneService.deletePersonne(id);
     }
 

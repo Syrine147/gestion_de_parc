@@ -23,7 +23,7 @@ public class ChauffeurController {
 
     
     @GetMapping("/{id}")
-    public Chauffeur getById(@PathVariable String id) {
+    public Chauffeur getById(@PathVariable Long id) {
         return chauffeurService.getChauffeurById(id);
     }
 
@@ -35,13 +35,13 @@ public class ChauffeurController {
 
     
     @PutMapping("/{id}")
-    public Chauffeur update(@PathVariable String id, @RequestBody Chauffeur updated) {
+    public Chauffeur update(@PathVariable Long id, @RequestBody Chauffeur updated) {
         return chauffeurService.updateChauffeur(id, updated);
     }
 
     
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id) {
+    public void delete(@PathVariable Long id) {
         chauffeurService.deleteChauffeur(id);
     }
 }

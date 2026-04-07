@@ -11,17 +11,19 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Table(name = "departements")
-
 public class Departement {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_dep", updatable = false, nullable = false)
+    private Long idDep;
+
     @Column(nullable = false)
-    private String idDep;
+    private String codeDep; 
 
     @Column(nullable = false)
     private String nomDep;
 
     @OneToMany(mappedBy = "departement")
     private List<Employer> employes;
-
 }

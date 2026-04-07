@@ -3,7 +3,6 @@ package com.example.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 import com.example.demo.repository.PersonneRepository;
 import com.example.demo.MODEL.Personne;
@@ -14,28 +13,44 @@ public class PersonneService {
     @Autowired
     private PersonneRepository personneRepository;
 
-    
-    public Personne createPersonne(Personne personne){
+  
+    public Personne createPersonne(Personne personne) {
+        personne.setIdUser(null); 
+
+        if (personne.getNom() == null || personne.getNom().isBlank())
+            throw new IllegalArgumentException("Le nom est obligatoire");
+
+        if (personne.getEmail() == null || personne.getEmail().isBlank())
+            throw new IllegalArgumentException("L'email est obligatoire");
+
+        if (personneRepository.existsByEmail(personne.getEmail()))
+            throw new RuntimeException("Cet email existe déjà");
+
         return personneRepository.save(personne);
     }
 
-    
-    public List<Personne> getAllPersonnes(){
+   
+    public List<Personne> getAllPersonnes() {
         return personneRepository.findAll();
     }
 
-    
-    public Personne getPersonneById(String id){
-        Optional<Personne> personne = personneRepository.findById(id);
-        return personne.orElse(null);
+  
+    public Personne getPersonneById(Long id) {
+        if (id == null)
+            throw new IllegalArgumentException("L'ID est obligatoire");
+
+        return personneRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Personne introuvable avec l'ID : " + id));
     }
 
-    public Personne updatePersonne(String id, Personne newPersonne){
+    
+    public Personne updatePersonne(Long id, Personne newPersonne) {
+        if (id == null)
+            throw new IllegalArgumentException("L'ID est obligatoire");
 
-    Personne p = personneRepository.findById(id).orElse(null);
+        Personne p = personneRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Personne introuvable avec l'ID : " + id));
 
-    if(p != null){
-        p.setIdUser(newPersonne.getIdUser());
         p.setNom(newPersonne.getNom());
         p.setPrenom(newPersonne.getPrenom());
         p.setEmail(newPersonne.getEmail());
@@ -46,11 +61,14 @@ public class PersonneService {
         return personneRepository.save(p);
     }
 
-    return null;
-}
-
    
-    public void deletePersonne(String id){
+    public void deletePersonne(Long id) {
+        if (id == null)
+            throw new IllegalArgumentException("L'ID est obligatoire");
+
+        if (!personneRepository.existsById(id))
+            throw new RuntimeException("Personne introuvable avec l'ID : " + id);
+
         personneRepository.deleteById(id);
     }
 }
